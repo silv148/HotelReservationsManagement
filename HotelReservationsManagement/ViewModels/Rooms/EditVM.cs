@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelReservationsManagement.ViewModels.Rooms
 {
-    public class CreateVM
+    public class EditVM
     {
-        [DisplayName("Номер: ")]
-        [Required(ErrorMessage = "*Това поле е задължително!")]
         public int RoomNumber { get; set; }
 
         [DisplayName("Тип: ")]

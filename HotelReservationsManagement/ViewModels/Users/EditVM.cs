@@ -10,7 +10,7 @@ namespace HotelReservationsManagement.ViewModels.Users
     public class EditVM
     {
         public int Id { get; set; }
-        //Ще се променя
+        
         [DisplayName("Потребителско име: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public string Username { get; set; }
@@ -50,7 +50,7 @@ namespace HotelReservationsManagement.ViewModels.Users
         [DisplayName("Активен: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public bool IsActive { get; set; }
-        //до тук
+        
         [DisplayName("Дата на освобождаване: ")]
         public DateTime? ReleaseDate { get; set; }
     }
