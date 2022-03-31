@@ -1,0 +1,27 @@
+﻿@model HotelReservationsManagement.ViewModels.Rooms.IndexVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["title"] = "ROOMS";
+}
+
+<div class="grid">
+    <div class="row">
+        <div class="col-1">Тип</div>
+        <div class="col-2">Капацитет</div>
+        <div class="col-2">Свободна ли е</div>
+        <div class="col-2">Цена за възрастен</div>
+        <div class="col-2">Цена за дете</div>
+        <div class="col-2"></div>
+    </div>
+@foreach(Room item in Model.Items)
+{
+    <div class="row">
+        <div class="col-1">@item.Type</div>
+        <div class="col-2">@item.Capacity</div>
+        <div class="col-2">@item.IsAvailable</div>
+        <div class="col-2">@item.PriceForAdult</div>
+        <div class="col-2">@item.PriceForChild</div>
+    </div>
+}
+</div>

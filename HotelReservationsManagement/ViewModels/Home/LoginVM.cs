@@ -10,12 +10,12 @@ namespace HotelReservationsManagement.ViewModels.Home
 {
     public class LoginVM
     {
-        [DisplayName("Username: ")]
-        [Required(ErrorMessage = "*This field is Required!")]
+        [DisplayName("Потребителско име: ")]
+        [Required(ErrorMessage = "*Това поле е задължително!")]
         public string Username { get; set; }
 
-        [DisplayName("Password: ")]
-        [Required(ErrorMessage = "*This field is Required!")]
+        [DisplayName("Парола: ")]
+        [Required(ErrorMessage = "*Това поле е задължително")]
         public string Password { get; set; }
     }
 }

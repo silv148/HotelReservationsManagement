@@ -1,0 +1,20 @@
+﻿@model HotelReservationsManagement.ViewModels.Clients.IndexVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["title"] = "Clients";
+}
+
+<div class="grid">
+    <div class="row">
+        <div class="col-2">First Name</div>
+        <div class="col-2">Last Name</div>
+    </div>
+@foreach(Client item in Model.Items)
+{
+    <div class="row">
+        <div class="col-2">@item.FirstName</div>
+        <div class="col-2">@item.LastName</div>
+    </div>
+}
+</div>

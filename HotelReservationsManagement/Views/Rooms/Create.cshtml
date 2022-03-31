@@ -1,0 +1,52 @@
+﻿@model HotelReservationsManagement.ViewModels.Rooms.CreateVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+}
+
+<div class="grid">
+	<div class="container">
+		<h4>User</h4>
+		<hr />
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group row">
+				<label asp-for="Type" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="Type" class="form-control" />
+					<span asp-validation-for="Type" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="Capacity" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="Capacity" class="form-control" />
+				<span asp-validation-for="Capacity" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="checkbox" asp-for="IsAvailable" id="inlineCheckbox1" />
+				<label asp-for="IsAvailable" class="form-check-label"></label>
+				<span asp-validation-for="IsAvailable" class="text-danger"></span>
+			</div>
+			<div class="form-group row">
+				<label asp-for="PriceForAdult" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="PriceForAdult" class="form-control" />
+					<span asp-validation-for="PriceForAdult" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="PriceForChild" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="PriceForChild" class="form-control" />
+					<span asp-validation-for="PriceForChild" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="col-sm-12 form-group row form-check">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+

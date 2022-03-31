@@ -12,15 +12,10 @@ namespace HotelReservationsManagement.Models
     {
         [Key]
         public int RoomNumber { get; set; }
-
         public int Capacity { get; set; }
         public string Type { get; set; }
         public bool IsAvailable { get; set; }
         public decimal PriceForAdult { get; set; }
         public decimal PriceForChild { get; set; }
-
-        [ForeignKey("ReservationId")]
-        public int ReservationId { get; set; }
-        public virtual Reservation Reservation { get; set; }
     }
 }

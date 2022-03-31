@@ -11,7 +11,7 @@ namespace HotelReservationsManagement.ViewModels.Users
     {
         public int Id { get; set; }
         //Ще се променя
-        [DisplayName("Потр. име: ")]
+        [DisplayName("Потребителско име: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public string Username { get; set; }
 
@@ -35,7 +35,7 @@ namespace HotelReservationsManagement.ViewModels.Users
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public string EGN { get; set; }
 
-        [DisplayName("Тел. номер: ")]
+        [DisplayName("Телефонен номер: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public string PhoneNumber { get; set; }
 

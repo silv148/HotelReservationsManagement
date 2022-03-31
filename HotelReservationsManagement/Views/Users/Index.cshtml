@@ -1,0 +1,31 @@
+﻿@model HotelReservationsManagement.ViewModels.Users.IndexVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["title"] = "USERS";
+}
+
+<div class="grid">
+    <div class="container">
+        <table class="table table-responsive table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Username</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+            </tr>
+          </thead>
+
+          <tbody>
+        @foreach(User item in Model.Items)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+            </tr>
+        }
+          </tbody>
+    </table>
+    </div>
+</div>

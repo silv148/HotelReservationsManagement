@@ -1,0 +1,47 @@
+﻿@model HotelReservationsManagement.ViewModels.Clients.CreateVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+}
+
+<div class="grid">
+	<div class="container">
+		<h4>Client</h4>
+		<hr />
+		<form asp-action="Create">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="form-group row">
+				<label asp-for="FirstName" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="FirstName" class="form-control" />
+					<span asp-validation-for="FirstName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="LastName" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="LastName" class="form-control" />
+					<span asp-validation-for="LastName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="PhoneNumber" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10"><input asp-for="PhoneNumber" class="form-control" />
+					<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="Email" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+						<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="checkbox" asp-for="IsAdult" id="inlineCheckbox1" />
+				<label asp-for="IsAdult" class="form-check-label"></label>
+				<span asp-validation-for="IsAdult" class="text-danger"></span>
+			</div>
+		</form>
+	</div>
+</div>

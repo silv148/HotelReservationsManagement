@@ -33,9 +33,7 @@ namespace HotelReservationsManagement.Controllers
                 return View(model);
 
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
-            UsersController loggedUser = context.Users.Where(u => u.Username == model.Username &&
-                                                       u.Password == model.Password)
-                                           .FirstOrDefault();
+            User loggedUser = context.Users.Where(u => u.Username == model.Username && u.Password == model.Password).FirstOrDefault();
             if (loggedUser == null)
             {
                 this.ModelState.AddModelError("authError", "Invalid username or password!");
