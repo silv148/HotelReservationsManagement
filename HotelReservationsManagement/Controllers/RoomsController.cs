@@ -36,7 +36,6 @@ namespace HotelReservationsManagement.Controllers
                 return View(model);
 
             Room item = new Room();
-            item.RoomNumber = model.RoomNumber;
             item.Capacity = model.Capacity;
             item.Type = model.Type;
             item.IsAvailable = model.IsAvailable;
