@@ -11,6 +11,7 @@ namespace HotelReservationsManagement.Models
     public class Room
     {
         [Key]
+        public int Id { get; set; }
         public int RoomNumber { get; set; }
         public int Capacity { get; set; }
         public string Type { get; set; }

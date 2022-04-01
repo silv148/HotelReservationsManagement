@@ -9,6 +9,10 @@ namespace HotelReservationsManagement.ViewModels.Rooms
 {
     public class EditVM
     {
+        public int Id { get; set; }
+
+        [DisplayName("Номер: ")]
+        [Required(ErrorMessage = "*Това поле е задължително!")]
         public int RoomNumber { get; set; }
 
         [DisplayName("Тип: ")]

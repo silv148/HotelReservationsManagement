@@ -6,22 +6,38 @@
 }
 
 <div class="grid">
-    <div class="row">
-        <div class="col-1">Тип</div>
-        <div class="col-2">Капацитет</div>
-        <div class="col-2">Свободна ли е</div>
-        <div class="col-2">Цена за възрастен</div>
-        <div class="col-2">Цена за дете</div>
-        <div class="col-2"></div>
-    </div>
-@foreach(Room item in Model.Items)
-{
-    <div class="row">
-        <div class="col-1">@item.Type</div>
-        <div class="col-2">@item.Capacity</div>
-        <div class="col-2">@item.IsAvailable</div>
-        <div class="col-2">@item.PriceForAdult</div>
-        <div class="col-2">@item.PriceForChild</div>
-    </div>
-}
+    <div class="container">
+        <table class="table table-responsive table-striped">
+           <thead>
+               <tr>
+                    <th>Номер на стая</th>
+                    <th>Тип</th>
+                    <th>Капацитет</th>
+                    <th>Свободна</th>
+                    <th>Цена за възрастен</th>
+                    <th>Цена за дете</th>
+                </tr>
+            </thead> 
+            <tbody>
+                @foreach(Room item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.RoomNumber</td>
+                        <td>@item.Type</td>
+                        <td>>@item.Capacity</td>
+                        @if (item.IsAvailable)
+                        {
+                            <td>Да</td>
+                        }
+                        else
+                        {
+                            <td>Не</td>      
+                        }
+                        <td>@item.PriceForAdult</td>
+                        <td>@item.PriceForChild</td>
+                    </tr>
+                }
+            </tbody>
+</table>
+</div>
 </div>

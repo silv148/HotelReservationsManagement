@@ -6,15 +6,37 @@
 }
 
 <div class="grid">
-    <div class="row">
-        <div class="col-2">First Name</div>
-        <div class="col-2">Last Name</div>
+    <div class="container">
+        <table class="table table-responsive table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Име</th>
+              <th scope="col">Фамилия</th>
+              <th scope="col">Телефонен номер</th>
+              <th scope="col">Е-майл</th>
+              <th scope="col">Възрастен</th>
+            </tr>
+          </thead>
+
+          <tbody>
+        @foreach(Client item in Model.Items)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Email</td>
+                @if (item.IsAdult)
+                {
+                    <td>Да</td>
+                }
+                else
+                {
+                    <td>Не</td>      
+                }
+            </tr>
+        }
+          </tbody>
+    </table>
     </div>
-@foreach(Client item in Model.Items)
-{
-    <div class="row">
-        <div class="col-2">@item.FirstName</div>
-        <div class="col-2">@item.LastName</div>
-    </div>
-}
 </div>

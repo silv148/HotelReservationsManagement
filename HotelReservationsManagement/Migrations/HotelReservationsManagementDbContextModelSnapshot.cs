@@ -76,12 +76,17 @@ namespace HotelReservationsManagement.Migrations
                     b.Property<bool>("IsAllInclusive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
+
+                    b.HasIndex("RoomId");
 
                     b.HasIndex("UserId");
 
@@ -90,7 +95,7 @@ namespace HotelReservationsManagement.Migrations
 
             modelBuilder.Entity("HotelReservationsManagement.Models.Room", b =>
                 {
-                    b.Property<int>("RoomNumber")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -107,15 +112,13 @@ namespace HotelReservationsManagement.Migrations
                     b.Property<decimal>("PriceForChild")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ReservationId")
+                    b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("RoomNumber");
-
-                    b.HasIndex("ReservationId");
+                    b.HasKey("Id");
 
                     b.ToTable("Rooms");
                 });
@@ -196,6 +199,12 @@ namespace HotelReservationsManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HotelReservationsManagement.Models.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("HotelReservationsManagement.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -204,18 +213,9 @@ namespace HotelReservationsManagement.Migrations
 
                     b.Navigation("Client");
 
+                    b.Navigation("Room");
+
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("HotelReservationsManagement.Models.Room", b =>
-                {
-                    b.HasOne("HotelReservationsManagement.Models.Reservation", "Reservation")
-                        .WithMany()
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Reservation");
                 });
 
             modelBuilder.Entity("HotelReservationsManagement.Models.Reservation", b =>
