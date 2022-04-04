@@ -7,20 +7,21 @@
 }
 
 <div class="content">
-        @if (loggedUser == null)
-        {
-        <span>Здравейте,</span>
-            <p>
-                За да продължите в нашия сайт, Вие трябва да имате вече съществуващ активен акаунт, с който да влезете. Ако все още нямате такъв, моля свържете се с Вашия администратор.
-            </p>
-            <a class="btn btn-primary mt-5 btn-lg" style="background-color: #9C2D41; border-color: #9C2D41;" href="/Home/Login">Вход</a>
-        }
-        else
-        {
-            <span>Добре дошли в системата за управление на хотелски резервации,
-            @(loggedUser.Username)</span>
-            <p>
 
-            </p>
-        }
+    @if (loggedUser == null)
+    {
+    <span>Здравейте,</span>
+        <p>
+            За да продължите в нашия сайт, Вие трябва да имате вече съществуващ активен акаунт, с който да влезете. Ако все още нямате такъв, моля свържете се с Вашия администратор.
+        </p>
+        <a class="btn btn-primary mt-5 btn-lg" style="background-color: #9C2D41; border-color: #9C2D41;" href="/Home/Login">Вход</a>
+    }
+    else
+    {
+        <span>Добре дошли в системата за управление на хотелски резервации,
+        @(loggedUser.FirstName) @(loggedUser.LastName)</span>
+        <p>
+
+        </p>
+    }
 </div>

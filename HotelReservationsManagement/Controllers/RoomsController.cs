@@ -36,6 +36,7 @@ namespace HotelReservationsManagement.Controllers
                 return View(model);
 
             Room item = new Room();
+            item.RoomNumber = model.RoomNumber;
             item.Capacity = model.Capacity;
             item.Type = model.Type;
             item.IsAvailable = model.IsAvailable;
@@ -53,7 +54,7 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Edit(int id)
         {
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
-            Room item = context.Rooms.Where(u => u.RoomNumber == id)
+            Room item = context.Rooms.Where(u => u.Id == id)
                                      .FirstOrDefault();
 
             if (item == null)
@@ -73,10 +74,14 @@ namespace HotelReservationsManagement.Controllers
         [HttpPost]
         public IActionResult Edit(EditVM model)
         {
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            
             if (!ModelState.IsValid)
                 return View(model);
 
-            Room item = new Room();
+            Room item = context.Rooms.Where((u) => u.Id == model.Id)
+                                                .FirstOrDefault();
+
             item.RoomNumber = model.RoomNumber;
             item.Capacity = model.Capacity;
             item.Type = model.Type;
@@ -84,7 +89,6 @@ namespace HotelReservationsManagement.Controllers
             item.PriceForAdult = model.PriceForAdult;
             item.PriceForChild = model.PriceForChild;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
             context.Rooms.Update(item);
             context.SaveChanges();
 
@@ -95,7 +99,7 @@ namespace HotelReservationsManagement.Controllers
         {
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
             Room item = new Room();
-            item.RoomNumber = id;
+            item.Id = id;
 
             context.Rooms.Remove(item);
             context.SaveChanges();

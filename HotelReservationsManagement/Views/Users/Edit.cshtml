@@ -1,13 +1,14 @@
-﻿@model HotelReservationsManagement.Models.User
+﻿@model HotelReservationsManagement.ViewModels.Users.EditVM
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
-    ViewData["title"] = "HOME";
+    ViewData["title"] = "EDIT USER";
 }
 
 <div class="grid">
-	<div class="container">
-	<h4>User</h4>
-	<hr />
+    <div class="content-card">
+
+		<h4>Редактирай потребител</h4>
+		<hr />
 		<form asp-action="Edit">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<input type="hidden" asp-for="Id" />
@@ -86,7 +87,7 @@
 				</div>
 				</div>
 				<div class="col-sm-12 form-group row form-check">
-					<input type="submit" value="Create" class="btn btn-primary" />
+					<input type="submit" value="Редактирай" class="btn btn-primary" />
 				</div>
 		</form>
 

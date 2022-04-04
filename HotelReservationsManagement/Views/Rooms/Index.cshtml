@@ -6,10 +6,13 @@
 }
 
 <div class="grid">
-    <div class="container">
+    <div class="content-card">
+
         <table class="table table-responsive table-striped">
-           <thead>
-               <tr>
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                     <th>Номер на стая</th>
                     <th>Тип</th>
                     <th>Капацитет</th>
@@ -22,6 +25,13 @@
                 @foreach(Room item in Model.Items)
                 {
                     <tr>
+                            <th scope="col">
+                                <a href="/Rooms/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </th>
+                        <th scope="col">
+                            <a href="/Rooms/Delete?id=@item.Id"
+                            onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                            </th>
                         <td>@item.RoomNumber</td>
                         <td>@item.Type</td>
                         <td>@item.Capacity</td>
@@ -38,6 +48,6 @@
                     </tr>
                 }
             </tbody>
-</table>
-</div>
+        </table>
+    </div>
 </div>

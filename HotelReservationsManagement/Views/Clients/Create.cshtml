@@ -2,10 +2,12 @@
 @using HotelReservationsManagement.Models
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["title"] = "CREATE CLIENT";
 }
 
 <div class="grid">
-	<div class="container">
+    <div class="content-card">
+
 		<h4>Добави клиент</h4>
 		<hr />
 		<form asp-action="Create">

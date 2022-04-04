@@ -73,17 +73,19 @@ namespace HotelReservationsManagement.Controllers
         [HttpPost]
         public IActionResult Edit(EditVM model)
         {
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+
             if (!ModelState.IsValid)
                 return View(model);
 
-            Client item = new Client();
+            Client item = context.Clients.Where(u => u.Id == model.Id)
+                                     .FirstOrDefault();
             item.FirstName = model.FirstName;
             item.LastName = model.LastName;
             item.PhoneNumber = model.PhoneNumber;
             item.Email = model.Email;
             item.IsAdult = model.IsAdult;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
             context.Clients.Update(item);
             context.SaveChanges();
 

@@ -6,47 +6,56 @@
 }
 
 <div class="grid">
-    <div class="container">
-        <table class="table table-responsive table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Потребителско име</th>
-              <th scope="col">Име</th>
-              <th scope="col">Презиме</th>
-              <th scope="col">Фамилия</th>
-              <th scope="col">ЕГН</th>
-              <th scope="col">Телефонен номер</th>
-              <th scope="col">Е-майл</th>
-              <th scope="col">Дата на назначаване</th>
-              <th scope="col">Активен</th>
-              <th scope="col">Дата на освобождаване</th>
-            </tr>
-          </thead>
+    <div class="content-card">
+         <table class="table table-responsive table-striped">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">Потребителско име</th>
+                  <th scope="col">Име</th>
+                  <th scope="col">Презиме</th>
+                  <th scope="col">Фамилия</th>
+                  <th scope="col">ЕГН</th>
+                  <th scope="col">Телефонен номер</th>
+                  <th scope="col">Е-майл</th>
+                  <th scope="col">Дата на назначаване</th>
+                  <th scope="col">Активен</th>
+                  <th scope="col">Дата на освобождаване</th>
+                </tr>
+              </thead>
 
-          <tbody>
-        @foreach(User item in Model.Items)
-        {
-            <tr>
-                <td>@item.Username</td>
-                <td>@item.FirstName</td>
-                <td>@item.Surname</td>
-                <td>@item.LastName</td>
-                <td>@item.EGN</td>
-                <td>@item.PhoneNumber</td>
-                <td>@item.Email</td>
-                <td>@item.DateOfAppointment</td>
-                @if (item.IsActive)
-                {
-                    <td>Да</td>
-                }
-                else
-                {
-                    <td>Не</td>      
-                }
-                <td>@item.ReleaseDate</td>
-            </tr>
-        }
-          </tbody>
-    </table>
+              <tbody>
+            @foreach(User item in Model.Items)
+            {
+                <tr>
+                    <th scope="col">
+                         <a href="/Users/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </th>
+                    <th scope="col">
+                        <a href="/Users/Delete?id=@item.Id"
+                        onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                     </th>
+                    <td>@item.Username</td>
+                    <td>@item.FirstName</td>
+                    <td>@item.Surname</td>
+                    <td>@item.LastName</td>
+                    <td>@item.EGN</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.Email</td>
+                    <td>@item.DateOfAppointment</td>
+                    @if (item.IsActive)
+                    {
+                        <td>Да</td>
+                    }
+                    else
+                    {
+                        <td>Не</td>      
+                    }
+                    <td>@item.ReleaseDate</td>
+                </tr>
+            }
+              </tbody>
+        </table>
     </div>
 </div>

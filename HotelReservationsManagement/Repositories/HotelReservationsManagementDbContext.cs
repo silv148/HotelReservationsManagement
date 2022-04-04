@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using HotelReservationsManagement.Models;
+using HotelReservationsManagement.ViewModels.Rooms;
+using HotelReservationsManagement.ViewModels.Clients;
 
 namespace HotelReservationsManagement.Repositories
 {
@@ -47,5 +49,9 @@ namespace HotelReservationsManagement.Repositories
                   ReleaseDate = null,
               });
         }
+
+        public DbSet<HotelReservationsManagement.ViewModels.Rooms.EditVM> EditVM { get; set; }
+
+        public DbSet<HotelReservationsManagement.ViewModels.Clients.EditVM> EditVM_1 { get; set; }
     }
 }
