@@ -28,14 +28,20 @@
               <tbody>
             @foreach(User item in Model.Items)
             {
-                <tr>
+
+
+                  <tr>
                     <th scope="col">
-                         <a href="/Users/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/Users/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                     </th>
-                    <th scope="col">
+                    @if (item.Id == 1)
+                    {<th scope="col">
                         <a href="/Users/Delete?id=@item.Id"
-                        onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
-                     </th>
+                            onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                    </th>}
+                    else {
+                        <td></td>
+                    }
                     <td>@item.Username</td>
                     <td>@item.FirstName</td>
                     <td>@item.Surname</td>
@@ -50,7 +56,8 @@
                     }
                     else
                     {
-                        <td>Не</td>      
+                        <td>Не</td>
+
                     }
                     <td>@item.ReleaseDate</td>
                 </tr>
