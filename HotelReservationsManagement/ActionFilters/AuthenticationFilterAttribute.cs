@@ -15,6 +15,8 @@ namespace HotelReservationsManagement.ActionFilters
         {
             if (context.HttpContext.Session.GetObject<User>("loggedUser") == null)
                 context.Result = new RedirectResult("/Home/Login");
+            if (context.HttpContext.Session.GetObject<User>("loggedUser").ReleaseDate != null)
+                context.Result = new RedirectResult("/Home/Login");
         }
     }
 }

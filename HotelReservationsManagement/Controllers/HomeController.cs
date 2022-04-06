@@ -36,7 +36,12 @@ namespace HotelReservationsManagement.Controllers
             User loggedUser = context.Users.Where(u => u.Username == model.Username && u.Password == model.Password).FirstOrDefault();
             if (loggedUser == null)
             {
-                this.ModelState.AddModelError("authError", "Invalid username or password!");
+                this.ModelState.AddModelError("authError", "Невалидни входни данни!");
+                return View(model);
+            }
+            else if (loggedUser.ReleaseDate != null)
+            {
+                this.ModelState.AddModelError("releasedError", "Вашият акаунт нямате достъп до системата!");
                 return View(model);
             }
 
