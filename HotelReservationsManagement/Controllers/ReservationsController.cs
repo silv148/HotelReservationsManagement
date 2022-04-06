@@ -48,6 +48,13 @@ namespace HotelReservationsManagement.Controllers
             item.RoomId = model.RoomId;
 
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            int dateArrive = item.DateArrive.Year + item.DateArrive.Month + item.DateArrive.Day;
+            int dateDepart = item.DateDepart.Year + item.DateDepart.Month + item.DateDepart.Day;
+            Room room = context.Rooms.Where(u => u.Id == item.RoomId).FirstOrDefault();
+            int daysOfStay = dateDepart - dateArrive;
+            var dayPrice = room.PriceForAdult * item.AdultsCount + room.PriceForChild * item.ChildsCount;
+            item.FinalPrice = daysOfStay * dayPrice;
+
             context.Reservations.Add(item);
             context.SaveChanges();
 

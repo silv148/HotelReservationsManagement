@@ -18,6 +18,8 @@ namespace HotelReservationsManagement.Models
         public DateTime DateDepart { get; set; }
         public bool HasBreakfast { get; set; }
         public bool IsAllInclusive { get; set; }
+        public int AdultsCount { get; set; }
+        public int ChildsCount { get; set; }
         public decimal FinalPrice { get; set; }
 
         [ForeignKey("ClientId")]
