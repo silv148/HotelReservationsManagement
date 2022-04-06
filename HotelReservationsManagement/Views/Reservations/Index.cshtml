@@ -1,0 +1,74 @@
+﻿@model HotelReservationsManagement.ViewModels.Reservations.IndexVM
+@using HotelReservationsManagement.Models
+@{
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["title"] = "RESERVATIONS";
+}
+
+<div class="grid">
+    <div class="content-card">
+         <div class="row">
+            <div class="col-8 col-sm-6">
+                <h2 class="float-left">Резервации</h2>
+            </div>
+            <div class="col-4 col-sm-6">
+                <a class="btn btn-primary btn-lg mb-4 float-right" href="/Rooms/Create">Добави резервация</a>
+            </div>
+        </div>
+        <table class="table table-responsive table-striped float-center">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th>Номер на резервация</th>
+                    <th>Дата на пристигане</th>
+                    <th>Дата на заминаване</th>
+                    <th>Включена закуска</th>
+                    <th>AllInclusive</th>
+                    <th>Финална цена</th>
+                    <th>Клиент</th>
+                    <th>Стая</th>
+                    <th>Потребител</th>
+                </tr>
+            </thead> 
+            <tbody>
+                @foreach(Reservation item in Model.Items)
+                {
+                    <tr>
+                        <th scope="col">
+                            <a href="/Rooms/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </th>
+                        <th scope="col">
+                            <a href="/Rooms/Delete?id=@item.Id"
+                            onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                            </th>
+                        <td>@item.Id</td>
+                        <td>@item.DateArrive</td>
+                        <td>@item.DateDepart</td>
+                        @if (item.HasBreakfast)
+                        {
+                            <td>Да</td>
+                        }
+                        else
+                        {
+                            <td>Не</td>      
+                        }
+                        
+                        @if (item.IsAllInclusive)
+                        {
+                            <td>Да</td>
+                        }
+                        else
+                        {
+                            <td>Не</td>      
+                        }
+                        <td>@item.FinalPrice</td>
+                        <td>@item.ClientId</td>
+                        <td>@item.RoomId</td>
+                        <td>@item.UserId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

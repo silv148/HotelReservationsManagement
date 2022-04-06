@@ -19,36 +19,40 @@
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
-    <nav class="navbar navbar-expand-lg navbar-light">
-		<a class="navbar-brand" href="/Home/Index">Управление на хотелски резервации</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-			aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-			<div class="navbar-nav">
-				<a class="nav-link" href="/Home/Index">Начало<span class="sr-only">(current)</span></a>
-                 @if (loggedUser != null)
-                {
-				    <a class="nav-link" href="/Users/Index">Потребители</a>
-				    <a class="nav-link" href="/Reservations/Index">Резервации</a>
-                    <a class="nav-link" href="/Clients/Index">Клиенти</a>
-                    <a class="nav-link" href="/Rooms/Index">Стаи</a>
-                    <a class="nav-link" href="/Home/Logout">Изход</a>
-                }
-                else
-                {
-                    <a class="nav-link" href="/Home/Login">Вход</a>
-                }
+    <div id="page-container">
+        <div id="content-wrap">
+            <nav class="navbar navbar-expand-lg navbar-light">
+		        <a class="navbar-brand" href="/Home/Index">Управление на хотелски резервации</a>
+		        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+			        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			        <span class="navbar-toggler-icon"></span>
+		        </button>
+		        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			        <div class="navbar-nav">
+				        <a class="nav-link" href="/Home/Index">Начало<span class="sr-only">(current)</span></a>
+                         @if (loggedUser != null)
+                        {
+				            <a class="nav-link" href="/Users/Index">Потребители</a>
+				            <a class="nav-link" href="/Reservations/Index">Резервации</a>
+                            <a class="nav-link" href="/Clients/Index">Клиенти</a>
+                            <a class="nav-link" href="/Rooms/Index">Стаи</a>
+                            <a class="nav-link" href="/Home/Logout">Изход</a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="/Home/Login">Вход</a>
+                        }
+                    </div>
+		        </div>
+	        </nav>
+            <div class="container mt-5 mb-5">
+                 @RenderBody()
             </div>
-		</div>
-	</nav>
-    <div class="container mt-5 mb-5">
-         @RenderBody()
+        </div>
+        <footer class="card-footer align-content-center">
+		      <span class="footer-text">Управление на хотелски резервации</span>
+	    </footer>
     </div>
-    <footer class="card-footer align-content-center">
-		  <span class="footer-text">Управление на хотелски резервации</span>
-	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

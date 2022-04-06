@@ -46,7 +46,7 @@ namespace HotelReservationsManagement.Controllers
             item.Email = model.Email;
             item.DateOfAppointment = model.DateOfAppointment;
             item.IsActive = model.IsActive;
-            item.ReleaseDate = model.ReleaseDate;
+            item.ReleaseDate = null;
 
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
             context.Users.Add(item);

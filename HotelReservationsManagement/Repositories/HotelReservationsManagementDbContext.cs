@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using HotelReservationsManagement.Models;
 using HotelReservationsManagement.ViewModels.Rooms;
 using HotelReservationsManagement.ViewModels.Clients;
+using HotelReservationsManagement.ViewModels.Reservations;
 
 namespace HotelReservationsManagement.Repositories
 {
@@ -53,5 +54,7 @@ namespace HotelReservationsManagement.Repositories
         public DbSet<HotelReservationsManagement.ViewModels.Rooms.EditVM> EditVM { get; set; }
 
         public DbSet<HotelReservationsManagement.ViewModels.Clients.EditVM> EditVM_1 { get; set; }
+
+        public DbSet<HotelReservationsManagement.ViewModels.Reservations.EditVM> EditVM_2 { get; set; }
     }
 }

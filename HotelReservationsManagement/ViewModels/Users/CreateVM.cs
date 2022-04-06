@@ -48,8 +48,5 @@ namespace HotelReservationsManagement.ViewModels.Users
         [DisplayName("Активен: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public bool IsActive { get; set; }
-
-        [DisplayName("Дата на освобождаване: ")]
-        public DateTime? ReleaseDate { get; set; }
     }
 }
