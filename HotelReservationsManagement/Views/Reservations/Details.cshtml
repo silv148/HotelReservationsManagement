@@ -1,0 +1,141 @@
+﻿@model HotelReservationsManagement.ViewModels.Reservations.ReservationVM
+@using HotelReservationsManagement.ExtentionMethods;
+
+
+@{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["Title"] = "DETAILS";
+}
+
+<div class="grid">
+    @if (loggedUser != null)
+	{
+    <div class="content-card">
+        <h4>Резевация @Html.DisplayFor(model => model.Id)</h4>
+        <hr />
+        <div class="ml-5">
+        <div class="ml-5">
+            <dl class="row ml-5">
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.UserId)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.UserId)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.DateArrive)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.DateArrive)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.DateDepart)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.DateDepart)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.HasBreakfast)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.HasBreakfast)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.IsAllInclusive)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.IsAllInclusive)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ChildrenCount)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ChildrenCount)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.AdultsCount)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.AdultsCount)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ClientId)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ClientId)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ClientName)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ClientName)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ClientFamilyName)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ClientFamilyName)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ClientPhone)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ClientPhone)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.ClientEmail)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.ClientEmail)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.RoomId)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.RoomId)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.RoomNumber)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.RoomNumber)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.RoomType)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.RoomType)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.FinalPrice)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.FinalPrice)
+                </dd>
+                <dt class = "ml-5 col-sm-4">
+                    @Html.DisplayNameFor(model => model.Username)
+                </dt>
+                <dd class = "col-sm-4">
+                    @Html.DisplayFor(model => model.Username)
+                </dd>
+            </dl>
+        </div>
+        </div>
+        <div>
+            @if (loggedUser.Id == 1 || loggedUser.Id == @Model.UserId)
+            {
+                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+                <span> | </span>
+            }
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+     }
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
+</div>

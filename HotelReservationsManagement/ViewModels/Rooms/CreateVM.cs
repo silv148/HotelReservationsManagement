@@ -11,6 +11,7 @@ namespace HotelReservationsManagement.ViewModels.Rooms
     {
         [DisplayName("Номер: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [Range(0, int.MaxValue, ErrorMessage = "Моля въведете валидно число!")]
         public int RoomNumber { get; set; }
 
         [DisplayName("Тип: ")]
@@ -19,18 +20,19 @@ namespace HotelReservationsManagement.ViewModels.Rooms
 
         [DisplayName("Капацитет: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [Range(0, 20, ErrorMessage = "Моля въведете валидно число!")]
         public int Capacity { get; set; }
 
-        [DisplayName("Свободна: ")]
-        [Required(ErrorMessage = "*Това поле е задължително!")]
         public bool IsAvailable { get; set; }
 
         [DisplayName("Цена за възрастен: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [Range(0, double.MaxValue, ErrorMessage = "Моля въведете валидна цена!")]
         public decimal PriceForAdult { get; set; }
 
         [DisplayName("Цена за дете: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [Range(0, double.MaxValue, ErrorMessage = "Моля въведете валидна цена!")]
         public decimal PriceForChild { get; set; }
     }
 }

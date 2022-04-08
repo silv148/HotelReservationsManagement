@@ -14,12 +14,13 @@ namespace HotelReservationsManagement.Models
 
         [ForeignKey("UserId")]
         public int UserId { get; set; }
+        public string Username { get; set; }
         public DateTime DateArrive { get; set; }
         public DateTime DateDepart { get; set; }
         public bool HasBreakfast { get; set; }
         public bool IsAllInclusive { get; set; }
-        public int AdultsCount { get; set; }
         public int ChildsCount { get; set; }
+        public int AdultsCount { get; set; }
         public decimal FinalPrice { get; set; }
 
         [ForeignKey("ClientId")]
@@ -27,8 +28,9 @@ namespace HotelReservationsManagement.Models
 
         [ForeignKey("RoomId")]
         public int RoomId { get; set; }
-        public virtual Room Room { get; set; }
-        public virtual User User { get; set; }
-        public virtual Client Client { get; set; }
+        public int RoomNumber { get; set; }
+        public Room Room { get; set; }
+        public User User { get; set; }
+        public Client Client { get; set; }
     }
 }

@@ -1,23 +1,22 @@
 ﻿@model HotelReservationsManagement.ViewModels.Reservations.CreateVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ViewModels.Clients
+@using HotelReservationsManagement.ExtentionMethods;
+
 @{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "CREATE RESERVATION";
 }
 
 <div class="grid">
+    @if (loggedUser != null)
+	{
     <div class="content-card">
-        <h4>Добави резервация</h4>
+        <h3>Добави резервация</h3>
         <hr />
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group row">
-                <label asp-for="UserId" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <input asp-for="UserId" class="form-control" />
-                    <span asp-validation-for="UserId" class="text-danger"></span>
-                </div>
-            </div>
             <div class="form-group row">
                 <label asp-for="DateArrive" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
@@ -36,34 +35,54 @@
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="HasBreakfast" /> @Html.DisplayNameFor(model => model.HasBreakfast)
                 </label>
+                <br />
+                <small><strong>Забележка:</strong> Допълнителна цена за закуска: 20лв</small>
             </div>
             <div class="form-group row form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsAllInclusive" /> @Html.DisplayNameFor(model => model.IsAllInclusive)
                 </label>
+                <br>
+                <small><strong>Забележка:</strong> Допълнителна цена за AllInclusive: 60лв</small>
             </div>
             <div class="form-group row">
-                <label asp-for="FinalPrice" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <input asp-for="FinalPrice" class="form-control" />
-                    <span asp-validation-for="FinalPrice" class="text-danger"></span>
-                </div>
+				<label asp-for="ClientFirstName" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="ClientFirstName" class="form-control" />
+					<span asp-validation-for="ClientFirstName" class="text-danger"></span>
+				</div>
             </div>
+			<div class="form-group row">
+				<label asp-for="ClientLastName" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="ClientLastName" class="form-control" />
+					<span asp-validation-for="ClientLastName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label asp-for="ClientPhone" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="ClientPhone" class="form-control" />
+					<span asp-validation-for="ClientPhone" class="text-danger"></span>
+				</div>
+			</div>
             <div class="form-group row">
-                <label asp-for="ClientId" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <input asp-for="ClientId" class="form-control" />
-                    <span asp-validation-for="ClientId" class="text-danger"></span>
-                </div>
-            </div>
+				<label asp-for="RoomNumber" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="RoomNumber" class="form-control" />
+					<span asp-validation-for="RoomNumber" class="text-danger"></span>
+				</div>
+			</div>
+                
             <div class="form-group row">
-                <label asp-for="RoomId" class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <input asp-for="RoomId" class="form-control" />
-                    <span asp-validation-for="RoomId" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="class="col-sm-12 form-group row form-check"">
+				<label asp-for="NumberChildren" class="col-sm-2 col-form-label"></label>
+				<div class="col-sm-10">
+					<input asp-for="NumberChildren" class="form-control" />
+					<span asp-validation-for="NumberChildren" class="text-danger"></span>
+				</div>
+			</div>
+            
+            <div class="col-sm-12 form-group row form-check mb-3 mt-3">
                 <input type="submit" value="Запази" class="btn btn-primary" />
             </div>
             <div class="col-sm-12 form-group row form-check">
@@ -71,6 +90,5 @@
             </div>
         </form>
     </div>
+    }
 </div>
-
-

@@ -1,5 +1,6 @@
 ﻿@model HotelReservationsManagement.ViewModels.Users.EditVM
 @using HotelReservationsManagement.ExtentionMethods;
+
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "EDIT USER";
@@ -101,6 +102,12 @@
 			<a asp-action="Index">Back to List</a>
 		</div>
 	</div>
+    }
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
     }
 </div>
 

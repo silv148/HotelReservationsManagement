@@ -1,6 +1,9 @@
 ﻿@model HotelReservationsManagement.ViewModels.Rooms.IndexVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ExtentionMethods
+
 @{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "ROOMS";
 }
@@ -18,8 +21,11 @@
         <table class="table table-responsive table-striped float-center">
             <thead>
                 <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    @if (loggedUser.Id == 1)
+                    {
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    }
                     <th>Номер на стая</th>
                     <th>Тип</th>
                     <th>Капацитет</th>
@@ -32,13 +38,16 @@
                 @foreach(Room item in Model.Items)
                 {
                     <tr>
-                            <th scope="col">
+                         @if (loggedUser.Id == 1)
+                        {
+                        <th scope="col">
                                 <a href="/Rooms/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                         </th>
                         <th scope="col">
                             <a href="/Rooms/Delete?id=@item.Id"
                             onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
                             </th>
+                        }
                         <td>@item.RoomNumber</td>
                         <td>@item.Type</td>
                         <td>@item.Capacity</td>

@@ -31,10 +31,12 @@ namespace HotelReservationsManagement.ViewModels.Users
 
         [DisplayName("ЕГН: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "ЕГН трябва да бъде съставено от 10 цифри!")]
         public string EGN { get; set; }
 
         [DisplayName("Телефонен номер: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
+        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Невалиден телефонен номер!")]
         public string PhoneNumber { get; set; }
 
         [DisplayName("Е-мейл: ")]

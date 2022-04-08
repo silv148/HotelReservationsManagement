@@ -1,11 +1,16 @@
 ﻿@model HotelReservationsManagement.ViewModels.Clients.IndexVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ExtentionMethods
+
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "Clients";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 <div class="grid">
+    @if (loggedUser != null)
+	{
     <div class="content-card">
         <div class="row">
             <div class="col-4 col-sm-6">
@@ -32,13 +37,13 @@
         @foreach(Client item in Model.Items)
         {
             <tr>
-                 <th scope="col">
-                     <a href="/Clients/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                <th scope="col">
+                    <a href="/Clients/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                 </th>
                 <th scope="col">
                     <a href="/Clients/Delete?id=@item.Id"
-                    onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
-                 </th>
+                        onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                </th>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
                 <td>@item.PhoneNumber</td>
@@ -56,4 +61,11 @@
           </tbody>
     </table>
 </div>
+    }
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
 </div>

@@ -1,10 +1,15 @@
 ﻿@model HotelReservationsManagement.ViewModels.Rooms.EditVM
+@using HotelReservationsManagement.ExtentionMethods;
+
 @{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "EDIT ROOM";
 }
 
 <div class="grid">
+	@if (loggedUser.Id == 1)
+    {
     <div class="content-card">
 
 		<h4>Редактирай стая</h4>
@@ -61,5 +66,12 @@
 		</form>
 
 	</div>
+	}
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
 </div>
 

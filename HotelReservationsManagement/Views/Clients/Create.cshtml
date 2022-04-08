@@ -1,13 +1,17 @@
 ﻿@model HotelReservationsManagement.ViewModels.Clients.CreateVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ExtentionMethods;
+
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "CREATE CLIENT";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 <div class="grid">
-    <div class="content-card">
-
+	@if (loggedUser != null)
+	{
+	<div class="content-card">
 		<h4>Добави клиент</h4>
 		<hr />
 		<form asp-action="Create">
@@ -53,4 +57,5 @@
 			<a asp-action="Index">Отмени</a>
 		</div>
 	</div>
+	}
 </div>

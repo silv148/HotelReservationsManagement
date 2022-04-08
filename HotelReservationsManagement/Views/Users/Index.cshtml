@@ -1,8 +1,11 @@
 ﻿@model HotelReservationsManagement.ViewModels.Users.IndexVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ExtentionMethods
+
 @{
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "USERS";
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
 }
 
 <div class="grid">
@@ -18,8 +21,11 @@
          <table class="table table-responsive table-striped mt-4 float-center">
               <thead>
                 <tr>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                    @if (loggedUser.Id == 1)
+                    {
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                    }
                   <th scope="col">Потребителско име</th>
                   <th scope="col">Име</th>
                   <th scope="col">Презиме</th>
@@ -39,17 +45,17 @@
 
 
                   <tr>
-                    <th scope="col">
-                        <a href="/Users/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
-                    </th>
-                    @if (item.Id == 1)
-                    {<th scope="col">
-                        <a href="/Users/Delete?id=@item.Id"
-                            onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
-                    </th>}
-                    else {
-                        <td></td>
+                      @if (loggedUser.Id == 1)
+                    {
+                        <th scope="col">
+                            <a href="/Users/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                        </th>
+                        <th scope="col">
+                            <a href="/Users/Delete?id=@item.Id"
+                                onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
+                        </th>
                     }
+
                     <td>@item.Username</td>
                     <td>@item.FirstName</td>
                     <td>@item.Surname</td>

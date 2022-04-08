@@ -1,10 +1,15 @@
 ﻿@model HotelReservationsManagement.ViewModels.Clients.EditVM
+@using HotelReservationsManagement.ExtentionMethods;
+
 @{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "EDIT CLIENT";
 }
 
 <div class="grid">
+	@if (loggedUser.Id == 1 || loggedUser.Id!=@Model.Id)
+    {
     <div class="content-card">
 
 		<h4>Редактирай Клиент</h4>
@@ -53,5 +58,12 @@
 			<a asp-action="Index">Отмени</a>
 		</div>
 	</div>
+	}
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
 </div>
 

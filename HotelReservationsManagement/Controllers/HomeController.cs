@@ -41,7 +41,7 @@ namespace HotelReservationsManagement.Controllers
             }
             else if (loggedUser.ReleaseDate != null)
             {
-                this.ModelState.AddModelError("releasedError", "Вашият акаунт нямате достъп до системата!");
+                this.ModelState.AddModelError("releasedError", "Вашият акаунт няма достъп до системата!");
                 return View(model);
             }
 

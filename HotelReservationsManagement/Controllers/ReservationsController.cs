@@ -26,6 +26,12 @@ namespace HotelReservationsManagement.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+
+            CreateVM model = new CreateVM();
+            model.UserId = loggedUser.Id;
+
             return View();
         }
 
@@ -33,29 +39,53 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Create(CreateVM model)
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
 
             if (!ModelState.IsValid)
                 return View(model);
 
             Reservation item = new Reservation();
+
+            Client client = context.Clients.FirstOrDefault(x => x.FirstName == model.ClientFirstName && x.LastName == model.ClientLastName && x.PhoneNumber == model.ClientPhone);
+            Room room = context.Rooms.FirstOrDefault(x => x.RoomNumber == model.RoomNumber);
+            item.Client = client;
+            item.ClientId = item.Client.Id;
+            item.Room = room;
+            item.RoomId = item.Room.Id;
+            item.RoomNumber = room.RoomNumber;
             item.UserId = loggedUser.Id;
+            item.Username = loggedUser.Username;
             item.DateArrive = model.DateArrive;
             item.DateDepart = model.DateDepart;
             item.HasBreakfast = model.HasBreakfast;
             item.IsAllInclusive = model.IsAllInclusive;
-            item.FinalPrice = model.FinalPrice;
-            item.ClientId = model.ClientId;
-            item.RoomId = model.RoomId;
+            item.ChildsCount = model.NumberChildren < 0 ? 0 : model.NumberChildren;
+            item.AdultsCount = room.Capacity - model.NumberChildren;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
             int dateArrive = item.DateArrive.Year + item.DateArrive.Month + item.DateArrive.Day;
             int dateDepart = item.DateDepart.Year + item.DateDepart.Month + item.DateDepart.Day;
-            Room room = context.Rooms.Where(u => u.Id == item.RoomId).FirstOrDefault();
             int daysOfStay = dateDepart - dateArrive;
-            var dayPrice = room.PriceForAdult * item.AdultsCount + room.PriceForChild * item.ChildsCount;
-            item.FinalPrice = daysOfStay * dayPrice;
+            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount;
+            var finalPrice = daysOfStay * dayPrice;
+
+            if (item.IsAllInclusive)
+            {
+                var priceForChild = (dayPrice + 60)*item.Room.Capacity;
+                finalPrice = daysOfStay * dayPrice;
+            }
+            else if (item.HasBreakfast)
+            {
+                var priceForChild = (dayPrice + 20) * item.Room.Capacity;
+                finalPrice = daysOfStay * dayPrice;
+            }
+
+            item.FinalPrice = finalPrice;
+            item.Room.IsAvailable = false;
 
             context.Reservations.Add(item);
+            client.Reservations.Add(item);
+
+            context.Clients.Update(client);
             context.SaveChanges();
 
             return RedirectToAction("Index", "Reservations");
@@ -72,15 +102,21 @@ namespace HotelReservationsManagement.Controllers
             if (item == null)
                 return RedirectToAction("Index", "Reservations");
 
-            Reservation model = new Reservation();
-            model.UserId = loggedUser.Id;
-            model.DateArrive = item.DateArrive;
-            model.DateDepart = item.DateDepart;
-            model.HasBreakfast = item.HasBreakfast;
+            EditVM model = new EditVM();
+
+            Client client = context.Clients.FirstOrDefault(x => x.Id == item.ClientId);
+            model.Id = item.Id;
+            model.Client = client;
+            model.ClientFirstName = client.FirstName;
+            model.ClientLastName = client.LastName;
+            model.ClientPhone = client.PhoneNumber;
+            model.RoomNumber = model.RoomNumber;
+            model.UserId = item.UserId;
             model.IsAllInclusive = item.IsAllInclusive;
-            model.FinalPrice = item.FinalPrice;
-            model.ClientId = item.ClientId;
-            model.RoomId = item.RoomId;
+            model.HasBreakfast = item.HasBreakfast;
+            model.NumberChildren = item.ChildsCount;
+            model.DateDepart = item.DateDepart;
+            model.DateArrive = item.DateArrive;
 
             return View(model);
         }
@@ -89,11 +125,12 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Edit(EditVM model)
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
-
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            Reservation item = context.Reservations.Where(u => u.Id == model.Id)
+                                     .FirstOrDefault();
             if (!ModelState.IsValid)
                 return View(model);
 
-            Reservation item = new Reservation();
 
             if (item.UserId != loggedUser.Id)
             {
@@ -108,16 +145,48 @@ namespace HotelReservationsManagement.Controllers
                 return View(model);
             }
 
+            Client client = context.Clients.FirstOrDefault(x => x.FirstName == model.ClientFirstName && x.LastName == model.ClientLastName && x.PhoneNumber == model.ClientPhone);
+
+            Room room = context.Rooms.FirstOrDefault(x => x.RoomNumber == model.RoomNumber);
+
+            item.Client = model.Client;
+            item.ClientId = item.Client.Id;
+            item.Room = room;
+            item.RoomId = item.Room.Id;
+            item.RoomNumber = room.RoomNumber;
             item.UserId = loggedUser.Id;
+            item.Username = loggedUser.Username;
             item.DateArrive = model.DateArrive;
             item.DateDepart = model.DateDepart;
             item.HasBreakfast = model.HasBreakfast;
             item.IsAllInclusive = model.IsAllInclusive;
-            item.FinalPrice = model.FinalPrice;
-            item.ClientId = model.ClientId;
-            item.RoomId = model.RoomId;
+            item.ChildsCount = model.NumberChildren < 0 ? 0 : model.NumberChildren;
+            item.AdultsCount = room.Capacity - model.NumberChildren;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            int dateArrive = item.DateArrive.Year + item.DateArrive.Month + item.DateArrive.Day;
+            int dateDepart = item.DateDepart.Year + item.DateDepart.Month + item.DateDepart.Day;
+            int daysOfStay = dateDepart - dateArrive;
+            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount;
+            var finalPrice = daysOfStay * dayPrice;
+
+            if (item.IsAllInclusive)
+            {
+                var priceForChild = (dayPrice + 60) * item.Room.Capacity;
+                finalPrice = daysOfStay * dayPrice;
+            }
+            else if (item.HasBreakfast)
+            {
+                var priceForChild = (dayPrice + 20) * item.Room.Capacity;
+                finalPrice = daysOfStay * dayPrice;
+            }
+
+            item.FinalPrice = finalPrice;
+            room.IsAvailable = false;
+
+            client.Reservations.Add(item);
+
+            context.Clients.Update(client);
+            context.Rooms.Update(room);
             context.Reservations.Update(item);
             context.SaveChanges();
 
@@ -134,6 +203,38 @@ namespace HotelReservationsManagement.Controllers
             context.SaveChanges();
 
             return RedirectToAction("Index", "Reservations");
+        }
+
+        public ActionResult Details(int id)
+        {
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            Reservation item = context.Reservations.FirstOrDefault(x => x.Id == id);
+
+            ReservationVM model = new ReservationVM();
+
+            Client client = context.Clients.FirstOrDefault(x => x.Id == item.ClientId);
+            Room room = context.Rooms.FirstOrDefault(x => x.Id == item.RoomId);
+
+            model.Id = item.Id;
+            model.ClientId=item.ClientId;
+            model.ClientName = client.FirstName;
+            model.ClientFamilyName = client.LastName;
+            model.ClientPhone = client.PhoneNumber;
+            model.ClientEmail = client.Email;
+            model.RoomId = item.RoomId;
+            model.RoomType = room.Type;
+            model.RoomNumber = item.RoomNumber;
+            model.UserId = item.UserId;
+            model.Username = item.Username;
+            model.IsAllInclusive = item.IsAllInclusive;
+            model.HasBreakfast = item.HasBreakfast;
+            model.ChildrenCount = item.ChildsCount;
+            model.AdultsCount = item.AdultsCount;
+            model.DateDepart = item.DateDepart;
+            model.DateArrive = item.DateArrive;
+            model.FinalPrice = item.FinalPrice;
+
+            return View(model);
         }
     }
 }

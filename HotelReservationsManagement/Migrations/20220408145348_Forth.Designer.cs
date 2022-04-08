@@ -4,14 +4,16 @@ using HotelReservationsManagement.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelReservationsManagement.Migrations
 {
     [DbContext(typeof(HotelReservationsManagementDbContext))]
-    partial class HotelReservationsManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408145348_Forth")]
+    partial class Forth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -270,69 +272,6 @@ namespace HotelReservationsManagement.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("EditVM_2");
-                });
-
-            modelBuilder.Entity("HotelReservationsManagement.ViewModels.Reservations.ReservationVM", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AdultsCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ChildrenCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClientEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClientFamilyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ClientName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ClientPhone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateArrive")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateDepart")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("FinalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("HasBreakfast")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsAllInclusive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoomNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoomType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReservationVM");
                 });
 
             modelBuilder.Entity("HotelReservationsManagement.ViewModels.Rooms.EditVM", b =>

@@ -1,74 +1,98 @@
 ﻿@model HotelReservationsManagement.ViewModels.Reservations.IndexVM
 @using HotelReservationsManagement.Models
+@using HotelReservationsManagement.ExtentionMethods
+
 @{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
     this.Layout = "/Views/Shared/_Site.cshtml";
     ViewData["title"] = "RESERVATIONS";
 }
 
 <div class="grid">
-    <div class="content-card">
-         <div class="row">
-            <div class="col-8 col-sm-6">
-                <h2 class="float-left">Резервации</h2>
+    @if (loggedUser != null)
+	{
+        <div class="content-card">
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <h2 class="float-left">Резервации</h2>
+                </div>
+                <div class="col-4 col-sm-6">
+                    <a class="btn btn-primary btn-lg mb-4 float-right" href="/Reservations/Create">Добави резервация</a>
+                </div>
             </div>
-            <div class="col-4 col-sm-6">
-                <a class="btn btn-primary btn-lg mb-4 float-right" href="/Reservations/Create">Добави резервация</a>
-            </div>
-        </div>
-        <table class="table table-responsive table-striped float-center">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th>Номер на резервация</th>
-                    <th>Дата на пристигане</th>
-                    <th>Дата на заминаване</th>
-                    <th>Включена закуска</th>
-                    <th>AllInclusive</th>
-                    <th>Финална цена</th>
-                    <th>Клиент</th>
-                    <th>Стая</th>
-                    <th>Потребител</th>
-                </tr>
-            </thead> 
-            <tbody>
-                @foreach(Reservation item in Model.Items)
-                {
+            <table class="table table-responsive table-striped float-center">
+                <thead>
                     <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th>Номер на резервация</th>
+                        <th>Стая</th>
+                        <th>Дата на пристигане</th>
+                        <th>Дата на заминаване</th>
+                        <th>Включена закуска</th>
+                        <th>AllInclusive</th>
+                        <th>Клиент</th>
+                        <th>Брой възрастни</th>
+                        <th>Брой деца</th>
+                        <th>Финална цена</th>
+                        <th>Потребител</th>
+                    </tr>
+                </thead> 
+            <tbody>
+            @foreach(Reservation item in Model.Items)
+            {
+                <tr>
+                    @if (loggedUser.Id == 1 || loggedUser.Id == @item.UserId)
+                    {
                         <th scope="col">
-                            <a href="/Rooms/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="/Reservations/Edit?id=@item.Id"><i class="fa-solid fa-pen-to-square"></i></a>
                         </th>
                         <th scope="col">
-                            <a href="/Rooms/Delete?id=@item.Id"
+                            <a href="/Reservations/Delete?id=@item.Id"
                             onclick="return confirm('Delete Record?');"><i class="fa-solid fa-trash-can"></i></a>
                             </th>
-                        <td>@item.Id</td>
-                        <td>@item.DateArrive</td>
-                        <td>@item.DateDepart</td>
-                        @if (item.HasBreakfast)
-                        {
-                            <td>Да</td>
-                        }
-                        else
-                        {
-                            <td>Не</td>      
-                        }
+                    }
+                    else
+                    {
+                        <td></td>
+                        <td></td>
+                    }
+                    <td><a href="/Reservations/Details?id=@item.Id">Резервация @item.Id</a></td>
+                    <td>@item.RoomNumber</td>
+                    <td>@item.DateArrive</td>
+                    <td>@item.DateDepart</td>
+                    @if (item.HasBreakfast)
+                    {
+                        <td>Да</td>
+                    }
+                    else
+                    {
+                        <td>Не</td>      
+                    }
                         
-                        @if (item.IsAllInclusive)
-                        {
-                            <td>Да</td>
-                        }
-                        else
-                        {
-                            <td>Не</td>      
-                        }
-                        <td>@item.FinalPrice</td>
-                        <td>@item.ClientId</td>
-                        <td>@item.RoomId</td>
-                        <td>@item.UserId</td>
-                    </tr>
-                }
+                    @if (item.IsAllInclusive)
+                    {
+                        <td>Да</td>
+                    }
+                    else
+                    {
+                        <td>Не</td>      
+                    }
+                    <td>@item.ClientId</td>
+                    <td>@item.AdultsCount</td>
+                    <td>@item.ChildsCount</td>
+                    <td>@item.FinalPrice</td>
+                    <td>@item.Username</td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
+    }
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
 </div>

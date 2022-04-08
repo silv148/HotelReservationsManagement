@@ -56,5 +56,7 @@ namespace HotelReservationsManagement.Repositories
         public DbSet<HotelReservationsManagement.ViewModels.Clients.EditVM> EditVM_1 { get; set; }
 
         public DbSet<HotelReservationsManagement.ViewModels.Reservations.EditVM> EditVM_2 { get; set; }
+
+        public DbSet<HotelReservationsManagement.ViewModels.Reservations.ReservationVM> ReservationVM { get; set; }
     }
 }
