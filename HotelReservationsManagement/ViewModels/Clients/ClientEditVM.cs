@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HotelReservationsManagement.ViewModels.Clients
 {
-    public class EditVM
+    public class ClientEditVM
     {
         public int Id { get; set; }
 

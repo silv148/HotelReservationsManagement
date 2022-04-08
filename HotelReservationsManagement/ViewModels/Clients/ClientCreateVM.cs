@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HotelReservationsManagement.ViewModels.Clients
 {
-    public class CreateVM
+    public class ClientCreateVM
     {
         [DisplayName("Име: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]

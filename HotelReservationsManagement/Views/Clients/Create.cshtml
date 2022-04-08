@@ -1,4 +1,4 @@
-﻿@model HotelReservationsManagement.ViewModels.Clients.CreateVM
+﻿@model HotelReservationsManagement.ViewModels.Clients.ClientCreateVM
 @using HotelReservationsManagement.Models
 @using HotelReservationsManagement.ExtentionMethods;
 
@@ -49,13 +49,13 @@
 				<span asp-validation-for="IsAdult" class="text-danger"></span>
 			</div>
 
-			<div class="col-sm-12 form-group row form-check">
+			<div class="col-sm-12 form-group row form-check mt-3 mb-3">
 				<input type="submit" value="Създай" class="btn btn-primary" />
 			</div>
+			<div class="col-sm-12 form-group row form-check">
+				<a asp-action="Index">Отмени</a>
+			</div>
 		</form>
-		<div>
-			<a asp-action="Index">Отмени</a>
-		</div>
 	</div>
 	}
 </div>

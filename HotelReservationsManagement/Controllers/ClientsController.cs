@@ -7,6 +7,7 @@ using HotelReservationsManagement.ActionFilters;
 using HotelReservationsManagement.Models;
 using HotelReservationsManagement.Repositories;
 using HotelReservationsManagement.ViewModels.Clients;
+using HotelReservationsManagement.ViewModels.Reservations;
 
 namespace HotelReservationsManagement.Controllers
 {
@@ -17,7 +18,7 @@ namespace HotelReservationsManagement.Controllers
         {
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
 
-            IndexVM model = new IndexVM();
+            ClientIndexVM model = new ClientIndexVM();
             model.Items = context.Clients.ToList();
 
             return View(model);
@@ -30,7 +31,7 @@ namespace HotelReservationsManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(CreateVM model)
+        public IActionResult Create(ClientCreateVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -59,7 +60,7 @@ namespace HotelReservationsManagement.Controllers
             if (item == null)
                 return RedirectToAction("Index", "Clients");
 
-            EditVM model = new EditVM();
+            ClientEditVM model = new ClientEditVM();
             model.Id = item.Id;            
             model.FirstName = item.FirstName;            
             model.LastName = item.LastName;            
@@ -71,7 +72,7 @@ namespace HotelReservationsManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(EditVM model)
+        public IActionResult Edit(ClientEditVM model)
         {
             HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
 
@@ -102,6 +103,33 @@ namespace HotelReservationsManagement.Controllers
             context.SaveChanges();
 
             return RedirectToAction("Index", "Clients");
+        }
+        public ActionResult Details(int id)
+        {
+            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            Client item = context.Clients.FirstOrDefault(x => x.Id == id);
+
+            var reservations = new List<Reservation>();
+            if (context.Reservations.Any(x => x.ClientId == id))
+            {
+                foreach (Reservation reservation in context.Reservations)
+                {
+                    if (reservation.ClientId == id)
+                        reservations.Add(reservation);
+                }
+            }
+
+            ClientVM model = new ClientVM();
+            model.Id = item.Id;
+            model.FirstName = item.FirstName;
+            model.LastName = item.LastName;
+            model.PhoneNumber = item.PhoneNumber;
+            model.Email = item.Email;
+            model.IsAdult = item.IsAdult;
+            model.Reservations = reservations;
+
+
+            return View(model);
         }
     }
 }

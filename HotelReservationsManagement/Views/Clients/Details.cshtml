@@ -1,0 +1,85 @@
+﻿@model HotelReservationsManagement.ViewModels.Clients.ClientVM
+@using HotelReservationsManagement.ExtentionMethods;
+
+@{
+    User loggedUser = this.ViewContext.HttpContext.Session.GetObject<User>("loggedUser");
+    this.Layout = "/Views/Shared/_Site.cshtml";
+    ViewData["Title"] = "Details";
+}
+
+<div class="grid">
+    @if (loggedUser != null)
+    {
+        <div class="content-card">
+            <h3>Клиент</h3>
+            <hr />
+            <div class="ml-5">
+                <div class="ml-5">
+                    <dl class="row">
+                        <dt class = "ml-5 col-sm-4">
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+                        <dd class = "col-sm-4">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+                        <dt class = "ml-5 col-sm-4">
+                            @Html.DisplayNameFor(model => model.LastName)
+                        </dt>
+                        <dd class = "col-sm-4">
+                            @Html.DisplayFor(model => model.LastName)
+                        </dd>
+                        <dt class = "ml-5 col-sm-4">
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+                        <dd class = "col-sm-4">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                        <dt class = "ml-5 col-sm-4">
+                            @Html.DisplayNameFor(model => model.Email)
+                        </dt>
+                        <dd class = "col-sm-4">
+                            @Html.DisplayFor(model => model.Email)
+                        </dd>
+                        <dt class = "ml-5 col-sm-4">
+                            @Html.DisplayNameFor(model => model.IsAdult)
+                        </dt>
+                        <dd class = "col-sm-4 mt-3">
+                            @Html.DisplayFor(model => model.IsAdult)
+                        </dd>
+                    </dl>
+                </div>
+                <h4 class="mt-4 mb-4 mr-5">Минали резервации</h4>
+                @if (Model.Reservations.Count > 0)
+                {
+                    <div class="ml-5">
+                        <dl class="row">
+                        @foreach (Reservation r in Model.Reservations)
+                        {
+                            <dt class = "ml-5 col-sm-4">
+                                Име на резервация
+                            </dt>
+                            <dd class = "col-sm-4">
+                                <a href="/Reservations/Details?id=@r.Id">Резервация @r.Id</a>
+                            </dd>
+                        }
+                        </dl>
+                    </div>
+                }
+                else
+                {
+                    <h5>Клиентът все още няма направени резервации!</h5>
+                }
+            </div>
+        <div class="mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Редактирай</a> |
+            <a asp-action="Index">Обратно</a>
+        </div>
+    </div>
+    }
+    else
+    {
+        <div class="content">
+            <p>Вие нямате достъп до това действие!</p>
+        </div>
+    }
+</div>

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using HotelReservationsManagement.ViewModels.Reservations;
+using System.ComponentModel.DataAnnotations.Schema;
+using HotelReservationsManagement.Models;
 
 namespace HotelReservationsManagement.ViewModels.Clients
 {
     public class ClientVM
     {
+        public int Id { get; set; }
+
         [DisplayName("Име: ")]
         public string FirstName { get; set; }
 
@@ -22,7 +25,6 @@ namespace HotelReservationsManagement.ViewModels.Clients
         [DisplayName("Възрастен: ")]
         public bool IsAdult { get; set; }
 
-        [DisplayName("Минали резервации: ")]
-        public List<ReservationVM> Items { get; set; }
+        public List<Reservation> Reservations { get; set; }
     }
 }

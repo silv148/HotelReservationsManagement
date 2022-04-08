@@ -1,4 +1,4 @@
-﻿@model HotelReservationsManagement.ViewModels.Clients.IndexVM
+﻿@model HotelReservationsManagement.ViewModels.Clients.ClientIndexVM
 @using HotelReservationsManagement.Models
 @using HotelReservationsManagement.ExtentionMethods
 
@@ -30,6 +30,7 @@
               <th scope="col">Телефонен номер</th>
               <th scope="col">Е-майл</th>
               <th scope="col">Възрастен</th>
+              <th scope="col">Детайли</th>
             </tr>
           </thead>
 
@@ -56,6 +57,9 @@
                 {
                     <td>Не</td>      
                 }
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Виж детайли</a>
+                </td>
             </tr>
         }
           </tbody>

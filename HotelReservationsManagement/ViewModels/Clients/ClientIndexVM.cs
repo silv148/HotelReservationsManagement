@@ -6,7 +6,7 @@ using HotelReservationsManagement.Models;
 
 namespace HotelReservationsManagement.ViewModels.Clients
 {
-    public class IndexVM
+    public class ClientIndexVM
     {
         public List<Client> Items { get; set; }
     }

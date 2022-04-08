@@ -125,10 +125,10 @@
         <div>
             @if (loggedUser.Id == 1 || loggedUser.Id == @Model.UserId)
             {
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">Редактирай</a> 
                 <span> | </span>
             }
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="Index">Обратно</a>
         </div>
     </div>
      }

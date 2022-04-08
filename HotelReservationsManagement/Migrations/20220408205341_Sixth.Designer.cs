@@ -4,14 +4,16 @@ using HotelReservationsManagement.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HotelReservationsManagement.Migrations
 {
     [DbContext(typeof(HotelReservationsManagementDbContext))]
-    partial class HotelReservationsManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220408205341_Sixth")]
+    partial class Sixth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +64,6 @@ namespace HotelReservationsManagement.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClientVMId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateArrive")
                         .HasColumnType("datetime2");
 
@@ -95,8 +94,6 @@ namespace HotelReservationsManagement.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
-
-                    b.HasIndex("ClientVMId");
 
                     b.HasIndex("RoomId");
 
@@ -409,10 +406,6 @@ namespace HotelReservationsManagement.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelReservationsManagement.ViewModels.Clients.ClientVM", null)
-                        .WithMany("Reservations")
-                        .HasForeignKey("ClientVMId");
-
                     b.HasOne("HotelReservationsManagement.Models.Room", "Room")
                         .WithMany()
                         .HasForeignKey("RoomId")
@@ -442,11 +435,6 @@ namespace HotelReservationsManagement.Migrations
                 });
 
             modelBuilder.Entity("HotelReservationsManagement.Models.Client", b =>
-                {
-                    b.Navigation("Reservations");
-                });
-
-            modelBuilder.Entity("HotelReservationsManagement.ViewModels.Clients.ClientVM", b =>
                 {
                     b.Navigation("Reservations");
                 });
