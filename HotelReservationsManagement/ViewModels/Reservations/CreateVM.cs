@@ -26,9 +26,13 @@ namespace HotelReservationsManagement.ViewModels.Reservations
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Невалиден телефонен номер!")]
         public string ClientPhone { get; set; }
 
+        [DisplayName("Брой възрастни: ")]
+        [Required(ErrorMessage = "*Това поле е задължително!")]
+        public int AdultsCount { get; set; }
+
         [DisplayName("Брой деца: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
-        public int NumberChildren { get; set; }
+        public int ChildsCount { get; set; }
 
         [DisplayName("Дата и час на пристигане: ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]

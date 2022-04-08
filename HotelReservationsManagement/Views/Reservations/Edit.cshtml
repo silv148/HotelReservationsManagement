@@ -45,41 +45,49 @@
                 <small><strong>Забележка:</strong> Допълнителна цена за AllInclusive: 60лв</small>
             </div>
             <div class="form-group row">
-				<label asp-for="ClientFirstName" class="col-sm-2 col-form-label"></label>
-				<div class="col-sm-10">
-					<input asp-for="ClientFirstName" class="form-control" />
-					<span asp-validation-for="ClientFirstName" class="text-danger"></span>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label asp-for="ClientLastName" class="col-sm-2 col-form-label"></label>
-				<div class="col-sm-10">
-					<input asp-for="ClientLastName" class="form-control" />
-					<span asp-validation-for="ClientLastName" class="text-danger"></span>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label asp-for="ClientPhone" class="col-sm-2 col-form-label"></label>
-				<div class="col-sm-10">
-					<input asp-for="ClientPhone" class="form-control" />
-					<span asp-validation-for="ClientPhone" class="text-danger"></span>
-				</div>
-			</div>
+                <label asp-for="ClientFirstName" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="ClientFirstName" class="form-control" />
+                    <span asp-validation-for="ClientFirstName" class="text-danger"></span>
+                </div>
+            </div>
             <div class="form-group row">
-				<label asp-for="RoomNumber" class="col-sm-2 col-form-label"></label>
-				<div class="col-sm-10">
-					<input asp-for="RoomNumber" class="form-control" />
-					<span asp-validation-for="RoomNumber" class="text-danger"></span>
-				</div>
-			</div>
-                
+                <label asp-for="ClientLastName" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="ClientLastName" class="form-control" />
+                    <span asp-validation-for="ClientLastName" class="text-danger"></span>
+                </div>
+            </div>
             <div class="form-group row">
-				<label asp-for="NumberChildren" class="col-sm-2 col-form-label"></label>
-				<div class="col-sm-10">
-					<input asp-for="NumberChildren" class="form-control" />
-					<span asp-validation-for="NumberChildren" class="text-danger"></span>
-				</div>
-			</div>
+                <label asp-for="ClientPhone" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="ClientPhone" class="form-control" />
+                    <span asp-validation-for="ClientPhone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="RoomNumber" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="RoomNumber" class="form-control" />
+                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="AdultsCount" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="AdultsCount" class="form-control" />
+                    <span asp-validation-for="AdultsCount" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label asp-for="ChildsCount" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input asp-for="ChildsCount" class="form-control" />
+                    <span asp-validation-for="ChildsCount" class="text-danger"></span>
+                </div>
+            </div>
             <div class="col-sm-12 form-group row form-check mb-3 mt-3">
                 <input type="submit" value="Запази" class="btn btn-primary" />
             </div>

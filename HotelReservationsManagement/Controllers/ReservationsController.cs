@@ -48,6 +48,19 @@ namespace HotelReservationsManagement.Controllers
 
             Client client = context.Clients.FirstOrDefault(x => x.FirstName == model.ClientFirstName && x.LastName == model.ClientLastName && x.PhoneNumber == model.ClientPhone);
             Room room = context.Rooms.FirstOrDefault(x => x.RoomNumber == model.RoomNumber);
+
+            if (model.DateDepart < model.DateArrive)
+            {
+                this.ModelState.AddModelError("dateError", "Датата на освобождаване не може да бъде по-ранна от тази на назначаване!");
+                return View(model);
+            }
+
+            if ((model.AdultsCount + model.ChildsCount) > room.Capacity)
+            {
+                this.ModelState.AddModelError("dateError", "Броят клиенти не може да бъде по-голям от капацитета на стаята!");
+                return View(model);
+            }
+
             item.Client = client;
             item.ClientId = item.Client.Id;
             item.Room = room;
@@ -59,23 +72,23 @@ namespace HotelReservationsManagement.Controllers
             item.DateDepart = model.DateDepart;
             item.HasBreakfast = model.HasBreakfast;
             item.IsAllInclusive = model.IsAllInclusive;
-            item.ChildsCount = model.NumberChildren < 0 ? 0 : model.NumberChildren;
-            item.AdultsCount = room.Capacity - model.NumberChildren;
+            item.ChildsCount = model.ChildsCount < 0 ? 0 : model.ChildsCount;
+            item.AdultsCount = model.AdultsCount;
 
             int dateArrive = item.DateArrive.Year + item.DateArrive.Month + item.DateArrive.Day;
             int dateDepart = item.DateDepart.Year + item.DateDepart.Month + item.DateDepart.Day;
             int daysOfStay = dateDepart - dateArrive;
-            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount;
+            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount + item.Room.PriceForAdult * (item.Room.Capacity - (item.AdultsCount + item.ChildsCount));
             var finalPrice = daysOfStay * dayPrice;
 
             if (item.IsAllInclusive)
             {
-                var priceForChild = (dayPrice + 60)*item.Room.Capacity;
+                dayPrice = dayPrice + (60 * (item.AdultsCount + item.ChildsCount));
                 finalPrice = daysOfStay * dayPrice;
             }
             else if (item.HasBreakfast)
             {
-                var priceForChild = (dayPrice + 20) * item.Room.Capacity;
+                dayPrice = dayPrice + (20 * (item.AdultsCount + item.ChildsCount));
                 finalPrice = daysOfStay * dayPrice;
             }
 
@@ -102,6 +115,12 @@ namespace HotelReservationsManagement.Controllers
             if (item == null)
                 return RedirectToAction("Index", "Reservations");
 
+            if (item.DateDepart < item.DateArrive)
+            {
+                this.ModelState.AddModelError("dateError", "Датата на освобождаване не може да бъде по-ранна от тази на назначаване!");
+                return View(item);
+            }
+
             EditVM model = new EditVM();
 
             Client client = context.Clients.FirstOrDefault(x => x.Id == item.ClientId);
@@ -114,7 +133,8 @@ namespace HotelReservationsManagement.Controllers
             model.UserId = item.UserId;
             model.IsAllInclusive = item.IsAllInclusive;
             model.HasBreakfast = item.HasBreakfast;
-            model.NumberChildren = item.ChildsCount;
+            model.AdultsCount = item.AdultsCount;
+            model.ChildsCount = item.ChildsCount;
             model.DateDepart = item.DateDepart;
             model.DateArrive = item.DateArrive;
 
@@ -160,23 +180,23 @@ namespace HotelReservationsManagement.Controllers
             item.DateDepart = model.DateDepart;
             item.HasBreakfast = model.HasBreakfast;
             item.IsAllInclusive = model.IsAllInclusive;
-            item.ChildsCount = model.NumberChildren < 0 ? 0 : model.NumberChildren;
-            item.AdultsCount = room.Capacity - model.NumberChildren;
+            item.ChildsCount = model.ChildsCount < 0 ? 0 : model.ChildsCount;
+            item.AdultsCount = model.AdultsCount;
 
             int dateArrive = item.DateArrive.Year + item.DateArrive.Month + item.DateArrive.Day;
             int dateDepart = item.DateDepart.Year + item.DateDepart.Month + item.DateDepart.Day;
             int daysOfStay = dateDepart - dateArrive;
-            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount;
+            var dayPrice = item.Room.PriceForAdult * item.AdultsCount + item.Room.PriceForChild * item.ChildsCount + item.Room.PriceForAdult * (item.Room.Capacity - (item.AdultsCount + item.ChildsCount));
             var finalPrice = daysOfStay * dayPrice;
 
             if (item.IsAllInclusive)
             {
-                var priceForChild = (dayPrice + 60) * item.Room.Capacity;
+                dayPrice = dayPrice + (60 * (item.AdultsCount + item.ChildsCount));
                 finalPrice = daysOfStay * dayPrice;
             }
             else if (item.HasBreakfast)
             {
-                var priceForChild = (dayPrice + 20) * item.Room.Capacity;
+                dayPrice = dayPrice + (20 * (item.AdultsCount + item.ChildsCount));
                 finalPrice = daysOfStay * dayPrice;
             }
 

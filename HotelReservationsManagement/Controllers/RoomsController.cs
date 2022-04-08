@@ -35,6 +35,12 @@ namespace HotelReservationsManagement.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            if (model.Capacity < 2 || model.Capacity > 5)
+            {
+                this.ModelState.AddModelError("dateError", "Капацитетът на стаята трябва да бъде между 2 и 5 легла!");
+                return View(model);
+            }
+
             Room item = new Room();
             item.RoomNumber = model.RoomNumber;
             item.Capacity = model.Capacity;
@@ -59,6 +65,12 @@ namespace HotelReservationsManagement.Controllers
 
             if (item == null)
                 return RedirectToAction("Index", "Rooms");
+
+            if (item.Capacity < 2 || item.Capacity > 5)
+            {
+                this.ModelState.AddModelError("dateError", "Капацитетът на стаята трябва да бъде между 2 и 5 легла!");
+                return View(item);
+            }
 
             EditVM model = new EditVM();
             model.RoomNumber = item.RoomNumber;
