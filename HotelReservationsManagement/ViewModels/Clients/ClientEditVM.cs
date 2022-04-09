@@ -29,7 +29,7 @@ namespace HotelReservationsManagement.ViewModels.Clients
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public string Email { get; set; }
 
-        [DisplayName("Активен: ")]
+        [DisplayName("   Възрастен ")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public bool IsAdult { get; set; }
     }
