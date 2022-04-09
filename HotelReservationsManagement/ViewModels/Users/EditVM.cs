@@ -49,7 +49,7 @@ namespace HotelReservationsManagement.ViewModels.Users
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public DateTime DateOfAppointment { get; set; }
 
-        [DisplayName("Активен: ")]
+        [DisplayName("   Активен")]
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public bool IsActive { get; set; }
         

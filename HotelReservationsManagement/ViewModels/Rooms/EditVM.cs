@@ -25,6 +25,7 @@ namespace HotelReservationsManagement.ViewModels.Rooms
         [Range(0, 20, ErrorMessage = "Моля въведете валидно число!")]
         public int Capacity { get; set; }
 
+        [DisplayName("   Свободна ")]
         public bool IsAvailable { get; set; }
 
         [DisplayName("Цена за възрастен: ")]
