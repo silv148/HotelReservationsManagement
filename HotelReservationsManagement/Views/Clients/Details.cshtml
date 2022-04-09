@@ -52,17 +52,67 @@
                 @if (Model.Reservations.Count > 0)
                 {
                     <div class="ml-5">
+                    <div class="ml-5">
                         <dl class="row">
                         @foreach (Reservation r in Model.Reservations)
                         {
-                            <dt class = "ml-5 col-sm-4">
-                                Име на резервация
+                            <dt class = "ml-5 col-sm-4 mt-4 mb-4">
+                                <em>Име на резервация</em>
                             </dt>
                             <dd class = "col-sm-4">
-                                <a href="/Reservations/Details?id=@r.Id">Резервация @r.Id</a>
+                                <em><a href="/Reservations/Details?id=@r.Id">Резервация @r.Id</a></em>
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Номер на стая
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.RoomNumber
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Дата на пристигане
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.DateArrive
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Дата на заминаване
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.DateDepart
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Брой възрастни
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.AdultsCount
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Брой деца
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.ChildsCount
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Включена закуска
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.HasBreakfast
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                AllInclusive
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.IsAllInclusive
+                            </dd>
+                            <dt class = "ml-5 col-sm-4">
+                                Финална цена
+                            </dt>
+                            <dd class = "col-sm-4">
+                               @r.FinalPrice
                             </dd>
                         }
                         </dl>
+                    </div>
                     </div>
                 }
                 else
