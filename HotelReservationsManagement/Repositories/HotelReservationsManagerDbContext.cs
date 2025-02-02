@@ -28,28 +28,28 @@ namespace HotelReservationsManager.Repositories
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-             .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HotelReservationsManagerDb;Trusted_Connection=True;");
+            .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HotelReservationsManagerDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-              new User()
-              {
-                  Id = 1,
-                  Username = "admin",
-                  Password = "password",
-                  FirstName = "Admin",
-                  Surname = "Ist",
-                  LastName = "Rator",
-                  EGN = "8943789564",
-                  PhoneNumber = "0897987987",
-                  Email = "admin@hotel-manager.com",
-                  DateOfAppointment = new DateTime(2022, 3, 30, 12, 00, 00),
-                  IsActive = true,
-                  ReleaseDate = null,
-              });
-        }
+				new User()
+				{
+					Id = 1,
+					Username = "admin",
+					Password = "password",
+					FirstName = "Admin",
+					Surname = "Ist",
+					LastName = "Rator",
+					EGN = "8943789564",
+					PhoneNumber = "0897987987",
+					Email = "admin@hotel-manager.com",
+					DateOfAppointment = new DateTime(2022, 3, 30, 12, 00, 00),
+					IsActive = true,
+					ReleaseDate = null,
+				});
+			}
 
         public DbSet<HotelReservationsManager.ViewModels.Rooms.EditVM> EditVM { get; set; }
 
