@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using HotelReservationsManager.Models;
 using HotelReservationsManager.ExtentionMethods;
 
-namespace HotelReservationsManagement.ActionFilters
+namespace HotelReservationsManager.ActionFilters
 {
     public class AuthenticationFilterAttribute : ActionFilterAttribute
     {
