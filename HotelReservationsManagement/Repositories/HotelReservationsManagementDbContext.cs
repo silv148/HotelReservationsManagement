@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.ViewModels.Rooms;
-using HotelReservationsManagement.ViewModels.Clients;
-using HotelReservationsManagement.ViewModels.Reservations;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.ViewModels.Rooms;
+using HotelReservationsManager.ViewModels.Clients;
+using HotelReservationsManager.ViewModels.Reservations;
 
-namespace HotelReservationsManagement.Repositories
+namespace HotelReservationsManager.Repositories
 {
-    public class HotelReservationsManagementDbContext : DbContext
+    public class HotelReservationsManagerDbContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
 
-        public HotelReservationsManagementDbContext()
+        public HotelReservationsManagerDbContext()
         {
             this.Users = this.Set<User>();
             this.Clients = this.Set<Client>();
@@ -28,7 +28,7 @@ namespace HotelReservationsManagement.Repositories
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-             .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HotelReservationsManagementDb;Trusted_Connection=True;");
+             .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=HotelReservationsManagerDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,14 +51,14 @@ namespace HotelReservationsManagement.Repositories
               });
         }
 
-        public DbSet<HotelReservationsManagement.ViewModels.Rooms.EditVM> EditVM { get; set; }
+        public DbSet<HotelReservationsManager.ViewModels.Rooms.EditVM> EditVM { get; set; }
 
-        public DbSet<HotelReservationsManagement.ViewModels.Clients.ClientEditVM> EditVM_1 { get; set; }
+        public DbSet<HotelReservationsManager.ViewModels.Clients.ClientEditVM> EditVM_1 { get; set; }
 
-        public DbSet<HotelReservationsManagement.ViewModels.Reservations.EditVM> EditVM_2 { get; set; }
+        public DbSet<HotelReservationsManager.ViewModels.Reservations.EditVM> EditVM_2 { get; set; }
 
-        public DbSet<HotelReservationsManagement.ViewModels.Reservations.ReservationVM> ReservationVM { get; set; }
+        public DbSet<HotelReservationsManager.ViewModels.Reservations.ReservationVM> ReservationVM { get; set; }
 
-        public DbSet<HotelReservationsManagement.ViewModels.Clients.ClientVM> ClientVM { get; set; }
+        public DbSet<HotelReservationsManager.ViewModels.Clients.ClientVM> ClientVM { get; set; }
     }
 }

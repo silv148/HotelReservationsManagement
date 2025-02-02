@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "HotelReservationsManagement": {
+    "HotelReservationsManager": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

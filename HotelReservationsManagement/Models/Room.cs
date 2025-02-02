@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
-namespace HotelReservationsManagement.Models
+namespace HotelReservationsManager.Models
 {
     public class Room
     {

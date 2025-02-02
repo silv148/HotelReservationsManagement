@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HotelReservationsManagement.Migrations
+namespace HotelReservationsManager.Migrations
 {
     public partial class Second : Migration
     {

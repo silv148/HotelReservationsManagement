@@ -1,4 +1,4 @@
-﻿using HotelReservationsManagement.Models;
+﻿using HotelReservationsManager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,12 +6,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationsManagement.ActionFilters;
-using HotelReservationsManagement.Repositories;
-using HotelReservationsManagement.ViewModels.Home;
-using HotelReservationsManagement.ExtentionMethods;
+using HotelReservationsManager.ActionFilters;
+using HotelReservationsManager.Repositories;
+using HotelReservationsManager.ViewModels.Home;
+using HotelReservationsManager.ExtentionMethods;
 
-namespace HotelReservationsManagement.Controllers
+namespace HotelReservationsManager.Controllers
 {
     public class HomeController : Controller
     {
@@ -32,7 +32,7 @@ namespace HotelReservationsManagement.Controllers
             if (!this.ModelState.IsValid)
                 return View(model);
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             User loggedUser = context.Users.Where(u => u.Username == model.Username && u.Password == model.Password).FirstOrDefault();
             if (loggedUser == null)
             {

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HotelReservationsManagement.ViewModels.Users
+namespace HotelReservationsManager.ViewModels.Users
 {
     public class EditVM
     {

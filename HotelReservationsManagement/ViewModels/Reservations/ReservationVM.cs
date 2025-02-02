@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace HotelReservationsManagement.ViewModels.Reservations
+namespace HotelReservationsManager.ViewModels.Reservations
 {
     public class ReservationVM
     {

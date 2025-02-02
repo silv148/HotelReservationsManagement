@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationsManagement.Models;
+using HotelReservationsManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace HotelReservationsManagement.ViewModels.Clients
+namespace HotelReservationsManager.ViewModels.Clients
 {
     public class ClientEditVM
     {

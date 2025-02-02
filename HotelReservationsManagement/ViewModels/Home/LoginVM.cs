@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 
-namespace HotelReservationsManagement.ViewModels.Home
+namespace HotelReservationsManager.ViewModels.Home
 {
     public class LoginVM
     {

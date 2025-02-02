@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.ExtentionMethods;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.ExtentionMethods;
 
 namespace HotelReservationsManagement.ActionFilters
 {

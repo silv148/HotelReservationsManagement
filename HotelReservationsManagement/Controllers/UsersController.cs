@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HotelReservationsManagement.ActionFilters;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.Repositories;
-using HotelReservationsManagement.ViewModels.Users;
+using HotelReservationsManager.ActionFilters;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.Repositories;
+using HotelReservationsManager.ViewModels.Users;
 
-namespace HotelReservationsManagement.Controllers
+namespace HotelReservationsManager.Controllers
 {
     [AuthenticationFilter]
     public class UsersController : Controller
     {
         public IActionResult Index()
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             IndexVM model = new IndexVM();
             model.Items = context.Users.ToList();
@@ -48,7 +48,7 @@ namespace HotelReservationsManagement.Controllers
             item.IsActive = model.IsActive;
             item.ReleaseDate = null;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             context.Users.Add(item);
             context.SaveChanges();
 
@@ -58,7 +58,7 @@ namespace HotelReservationsManagement.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             User item = context.Users.Where(u => u.Id == id)
                                      .FirstOrDefault();
 
@@ -102,7 +102,7 @@ namespace HotelReservationsManagement.Controllers
             item.IsActive = model.IsActive;
             item.ReleaseDate = model.ReleaseDate;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             context.Users.Update(item);
             context.SaveChanges();
 
@@ -111,7 +111,7 @@ namespace HotelReservationsManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             User item = new User();
             item.Id = id;
 

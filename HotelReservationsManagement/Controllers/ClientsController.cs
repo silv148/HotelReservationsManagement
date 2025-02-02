@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HotelReservationsManagement.ActionFilters;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.Repositories;
-using HotelReservationsManagement.ViewModels.Clients;
-using HotelReservationsManagement.ViewModels.Reservations;
+using HotelReservationsManager.ActionFilters;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.Repositories;
+using HotelReservationsManager.ViewModels.Clients;
+using HotelReservationsManager.ViewModels.Reservations;
 
-namespace HotelReservationsManagement.Controllers
+namespace HotelReservationsManager.Controllers
 {
     [AuthenticationFilter]
     public class ClientsController : Controller
     {
         public IActionResult Index()
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             ClientIndexVM model = new ClientIndexVM();
             model.Items = context.Clients.ToList();
@@ -43,7 +43,7 @@ namespace HotelReservationsManagement.Controllers
             item.Email = model.Email;
             item.IsAdult = model.IsAdult;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             context.Clients.Add(item);
             context.SaveChanges();
 
@@ -53,7 +53,7 @@ namespace HotelReservationsManagement.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Client item = context.Clients.Where(u => u.Id == id)
                                      .FirstOrDefault();
 
@@ -74,7 +74,7 @@ namespace HotelReservationsManagement.Controllers
         [HttpPost]
         public IActionResult Edit(ClientEditVM model)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -95,7 +95,7 @@ namespace HotelReservationsManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Client item = new Client();
             item.Id = id;
 
@@ -106,7 +106,7 @@ namespace HotelReservationsManagement.Controllers
         }
         public ActionResult Details(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Client item = context.Clients.FirstOrDefault(x => x.Id == id);
 
             var reservations = new List<Reservation>();

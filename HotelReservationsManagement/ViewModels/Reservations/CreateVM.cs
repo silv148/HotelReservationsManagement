@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationsManagement.Models;
+using HotelReservationsManager.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace HotelReservationsManagement.ViewModels.Reservations
+namespace HotelReservationsManager.ViewModels.Reservations
 {
     public class CreateVM
     {

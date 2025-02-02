@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationsManagement.ActionFilters;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.Repositories;
-using HotelReservationsManagement.ViewModels.Rooms;
+using HotelReservationsManager.ActionFilters;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.Repositories;
+using HotelReservationsManager.ViewModels.Rooms;
 
-namespace HotelReservationsManagement.Controllers
+namespace HotelReservationsManager.Controllers
 {
     [AuthenticationFilter]
     public class RoomsController : Controller
     {
         public IActionResult Index()
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             IndexVM model = new IndexVM();
             model.Items = context.Rooms.ToList();
@@ -49,7 +49,7 @@ namespace HotelReservationsManagement.Controllers
             item.PriceForAdult = model.PriceForAdult;
             item.PriceForChild = model.PriceForChild;
 
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             context.Rooms.Add(item);
             context.SaveChanges();
 
@@ -59,7 +59,7 @@ namespace HotelReservationsManagement.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Room item = context.Rooms.Where(u => u.Id == id)
                                      .FirstOrDefault();
 
@@ -86,7 +86,7 @@ namespace HotelReservationsManagement.Controllers
         [HttpPost]
         public IActionResult Edit(EditVM model)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             
             if (!ModelState.IsValid)
                 return View(model);
@@ -109,7 +109,7 @@ namespace HotelReservationsManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Room item = new Room();
             item.Id = id;
 

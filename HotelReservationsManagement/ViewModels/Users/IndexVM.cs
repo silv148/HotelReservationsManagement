@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelReservationsManagement.Models;
+using HotelReservationsManager.Models;
 
-namespace HotelReservationsManagement.ViewModels.Users
+namespace HotelReservationsManager.ViewModels.Users
 {
     public class IndexVM
     {

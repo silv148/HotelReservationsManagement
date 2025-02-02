@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using HotelReservationsManagement.Models;
+using HotelReservationsManager.Models;
 
-namespace HotelReservationsManagement.ViewModels.Clients
+namespace HotelReservationsManager.ViewModels.Clients
 {
     public class ClientVM
     {

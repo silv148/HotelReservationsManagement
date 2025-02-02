@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using HotelReservationsManagement.ActionFilters;
-using HotelReservationsManagement.Models;
-using HotelReservationsManagement.Repositories;
-using HotelReservationsManagement.ViewModels.Reservations;
-using HotelReservationsManagement.ExtentionMethods;
+using HotelReservationsManager.ActionFilters;
+using HotelReservationsManager.Models;
+using HotelReservationsManager.Repositories;
+using HotelReservationsManager.ViewModels.Reservations;
+using HotelReservationsManager.ExtentionMethods;
 
-namespace HotelReservationsManagement.Controllers
+namespace HotelReservationsManager.Controllers
 {
     public class ReservationsController : Controller
     {
         public IActionResult Index()
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             IndexVM model = new IndexVM();
             model.Items = context.Reservations.ToList();
@@ -27,7 +27,7 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Create()
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             CreateVM model = new CreateVM();
             model.UserId = loggedUser.Id;
@@ -39,7 +39,7 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Create(CreateVM model)
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -108,7 +108,7 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Edit(int id)
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Reservation item = context.Reservations.Where(u => u.Id == id)
                                      .FirstOrDefault();
 
@@ -145,7 +145,7 @@ namespace HotelReservationsManagement.Controllers
         public IActionResult Edit(EditVM model)
         {
             User loggedUser = this.HttpContext.Session.GetObject<User>("loggedUser");
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Reservation item = context.Reservations.Where(u => u.Id == model.Id)
                                      .FirstOrDefault();
             if (!ModelState.IsValid)
@@ -215,7 +215,7 @@ namespace HotelReservationsManagement.Controllers
 
         public IActionResult Delete(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Reservation item = new Reservation();
             item.Id = id;
 
@@ -227,7 +227,7 @@ namespace HotelReservationsManagement.Controllers
 
         public ActionResult Details(int id)
         {
-            HotelReservationsManagementDbContext context = new HotelReservationsManagementDbContext();
+            HotelReservationsManagerDbContext context = new HotelReservationsManagerDbContext();
             Reservation item = context.Reservations.FirstOrDefault(x => x.Id == id);
 
             ReservationVM model = new ReservationVM();
