@@ -42,10 +42,8 @@ namespace HotelReservationsManagement.ViewModels.Reservations
         [Required(ErrorMessage = "*Това поле е задължително!")]
         public DateTime DateDepart { get; set; }
 
-        [DisplayName("    Включена закусна")]
         public bool HasBreakfast { get; set; }
 
-        [DisplayName("    AllInclusive")]
         public bool IsAllInclusive { get; set; }
 
         [DisplayName("Номер на стаята: ")]

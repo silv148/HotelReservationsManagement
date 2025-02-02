@@ -16,7 +16,7 @@ namespace HotelReservationsManagement.ViewModels.Reservations
         [DisplayName("Включена закуска: ")]
         public bool HasBreakfast { get; set; }
 
-        [DisplayName("AllInclusive: ")]
+        [DisplayName("IsAllInclusive: ")]
         public bool IsAllInclusive { get; set; }
 
         [DisplayName("Брой деца: ")]
